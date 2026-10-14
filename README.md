@@ -1,175 +1,191 @@
-# Customer_behaviour_analysis
-# Customer Behaviour Analysis
+# 🛍️ Customer Shopping Behavior Analysis
 
-## 📌 Project Overview
+An end-to-end data analytics project that explores how customers shop: what they buy, how much they spend, how they respond to discounts and subscriptions, and which segments drive revenue. The workflow runs from raw CSV to cleaned data in **Python**, business analysis in **MySQL**, and an interactive **Power BI** dashboard.
 
-This project focuses on analysing customer shopping behaviour to understand purchasing patterns, product preferences, and customer characteristics. Using Python, SQL, and Power BI, the project transforms raw customer data into meaningful insights that can support data-driven business decisions.
+---
 
-## 🎯 Business Problem
+## 📌 Table of Contents
 
-Businesses need to understand how customers shop, which products they prefer, how frequently they purchase, and what factors influence their buying decisions. Without analysing customer data, it becomes difficult to identify trends, evaluate promotional strategies, and develop effective customer engagement approaches.
+- [Project Overview](#-project-overview)
+- [Dataset](#-dataset)
+- [Tools & Technologies](#-tools--technologies)
+- [Methodology](#-methodology)
+- [Business Questions Answered (SQL)](#-business-questions-answered-sql)
+- [Key Insights](#-key-insights)
+- [Recommendations](#-recommendations)
+- [Repository Structure](#-repository-structure)
+- [How to Run](#-how-to-run)
+- [Limitations](#-limitations)
+- [License](#-license)
 
-This project aims to explore customer shopping data, identify patterns in purchasing behaviour, and generate actionable insights that can help businesses improve marketing strategies, customer satisfaction, and decision-making.
+---
 
-## 🎯 Project Objectives
+## 🎯 Project Overview
 
-- Clean and prepare raw customer shopping data for analysis.
-- Explore customer demographics and shopping preferences.
-- Analyse purchasing frequency and product category trends.
-- Investigate the relationship between discounts, promotions, and purchasing behaviour.
-- Use SQL queries to answer business-related questions.
-- Develop visualizations and dashboards to communicate findings.
+Retail teams need to know *who* their customers are and *what* influences their spending. This project analyzes 3,900 purchase records to answer questions about:
 
-## 🛠️ Tools & Technologies
+- Revenue by gender, age group and product category
+- The effect of discounts, subscriptions and shipping type on spending
+- Customer segmentation by purchase history (New / Returning / Loyal)
+- Best-rated, most-purchased and most-discounted products
 
-- **Python:** Data cleaning, transformation, and exploratory data analysis.
-- **Pandas & NumPy:** Data manipulation and preprocessing.
-- **Matplotlib & Seaborn:** Data visualization.
-- **MySQL:** Data storage, querying, aggregation, and business analysis.
-- **Power BI:** Interactive dashboards and visual reporting.
-- **Jupyter Notebook / VS Code:** Development environment.
+The goal is to turn transaction data into insights that can guide marketing, pricing and loyalty strategy.
 
-## 📂 Dataset Description
+---
 
-The project uses customer shopping data containing information about customer characteristics, product categories, purchase amounts, shopping frequency, discounts, and other purchasing-related attributes.
+## 📂 Dataset
 
-The dataset is used to explore customer preferences and identify patterns in shopping behaviour.
+| Property | Details |
+|---|---|
+| File | `customer_shopping_behavior.csv` |
+| Records | 3,900 purchases |
+| Columns | 18 |
+| Customers' age range | 18 – 70 |
+| Locations | 50 US states |
+| Missing values | 37 in `Review Rating` |
 
-> Add the original dataset source, dataset size, and the actual column details here.
+**Columns:** Customer ID, Age, Gender, Item Purchased, Category, Purchase Amount (USD), Location, Size, Color, Season, Review Rating, Subscription Status, Shipping Type, Discount Applied, Promo Code Used, Previous Purchases, Payment Method, Frequency of Purchases.
 
-## 🔄 Project Workflow
+**Categories:** Clothing, Accessories, Footwear, Outerwear.
 
-1. **Data Loading:** Import the dataset into Python.
-2. **Data Cleaning:** Check for missing values, duplicates, inconsistent categories, and incorrect data types.
-3. **Data Transformation:** Standardize categorical values and create useful analytical columns where appropriate.
-4. **Exploratory Data Analysis:** Examine distributions, trends, and relationships between variables.
-5. **SQL Analysis:** Load the cleaned data into MySQL and write queries to answer business questions.
-6. **Data Visualization:** Create charts and a Power BI dashboard, if applicable.
-7. **Insight Generation:** Summarize findings and develop data-supported business recommendations.
+---
 
-## 📊 Business Questions
+## 🧰 Tools & Technologies
 
-The analysis aims to answer questions such as:
+- **Python** – pandas for cleaning and feature engineering, SQLAlchemy + PyMySQL for loading data into the database
+- **Jupyter Notebook** – exploratory analysis and data preparation
+- **MySQL** – business analysis with aggregations, subqueries, CTEs and window functions
+- **Power BI** – interactive dashboard (`.pbix`)
 
-1. Which product categories are most popular among customers?
-2. What is the distribution of customer purchase frequency?
-3. How does spending vary across customer groups?
-4. What proportion of customers use discounts or promotional offers?
-5. Which product categories have higher average purchase amounts?
-6. How do shopping preferences vary across demographic groups?
-7. Are subscription status and purchase behaviour associated?
-8. What patterns can help businesses improve customer engagement?
+---
 
-*The final questions should reflect the available dataset columns and the analyses actually completed.*
+## 🔬 Methodology
 
-## 📈 Key Insights & Findings
+### 1. Data Preparation & EDA (Python)
+- Loaded the CSV with pandas and inspected structure with `df.info()` and `df.describe()`
+- **Missing values:** imputed the 37 missing `Review Rating` values with the **median rating of each product category**
+- **Standardized column names** to snake_case (e.g. `Purchase Amount (USD)` → `purchase_amount`)
+- **Feature engineering:**
+  - `age_group` – customers split into four quartile-based groups: Young Adult (18–31), Adult (32–44), Middle-aged (45–57), Senior (58–70)
+  - `purchase_frequency_days` – purchase frequency text (Weekly, Monthly, Quarterly, etc.) mapped to a number of days
+- **Redundancy check:** `discount_applied` and `promo_code_used` were identical in every row, so `promo_code_used` was dropped
 
-Add the actual findings obtained from your Python analysis, SQL queries, and dashboard.
+### 2. Database Integration
+- Connected Python to a local MySQL database (`customer_behaviour`) and wrote the cleaned DataFrame to a `customer` table
 
-Examples of findings to document after validating them:
+### 3. SQL Analysis
+- Answered 10 business questions (listed below) in `Customer_behaviour_SQLqueries.sql`
 
-- Most frequently purchased product categories.
-- Differences in average spending across customer segments.
-- Common purchasing frequencies.
-- Observed associations between discounts and purchasing patterns.
-- Potential opportunities for customer retention and targeted promotions.
+### 4. Visualization
+- Built an interactive dashboard in Power BI (`customer_behavior_dashboard.pbix`) to present the findings
 
-> Replace these examples with your actual results. Do not report an assumed trend as a confirmed finding.
+---
 
-## 📊 Dashboard
+## ❓ Business Questions Answered (SQL)
 
-If a Power BI dashboard is available, add a screenshot below.
+1. What is the total revenue from male vs. female customers?
+2. Which customers used a discount but still spent more than the average purchase amount?
+3. Which 5 products have the highest average review rating?
+4. How do average purchase amounts compare between Standard and Express shipping?
+5. Do subscribed customers spend more than non-subscribers?
+6. Which 5 products have the highest share of discounted purchases?
+7. How many customers fall into the New, Returning and Loyal segments?
+8. What are the top 3 most purchased products within each category?
+9. Are repeat buyers (more than 5 previous purchases) also likely to subscribe?
+10. What is the revenue contribution of each age group?
 
-![Customer Behaviour Analysis Dashboard](images/dashboard.png)
+---
 
-*Replace the image path with the actual location of your dashboard screenshot, or remove this section until the screenshot is available.*
+## 📊 Key Insights
 
-## ⚙️ How to Run the Project
+Overall: **$233,081** total revenue, **$59.76** average purchase, **3.75** average review rating.
 
-### Prerequisites
+| Area | Finding |
+|---|---|
+| **Gender** | Male customers generated **$157,890** vs. **$75,191** from female customers. This follows the customer mix (68% of purchases are by men); average spend per purchase is almost the same (~$59.5 vs ~$60.3). |
+| **Category** | Clothing leads with **$104,264** (≈45% of revenue), followed by Accessories ($74,200), Footwear ($36,093) and Outerwear ($18,524). |
+| **Discounts** | 43% of purchases used a discount. **839** discounted purchases were still above the average spend. Hats (50%), Sneakers (49.7%) and Coats (49.1%) have the highest discount rates. |
+| **Top-rated products** | Gloves (3.86), Sandals (3.84), Boots (3.82), Hat (3.80), Handbag (3.78). |
+| **Shipping** | Express shipping averages **$60.48** vs. **$58.46** for Standard, a small difference of about 3%. |
+| **Subscriptions** | 1,053 subscribers (27% of purchases) average **$59.49** vs. **$59.87** for non-subscribers, so subscribing does not make customers spend more per purchase. Subscribers contribute about 27% of revenue. |
+| **Segments** | Based on previous purchases: **Loyal 79.9%** (3,116), Returning 18.0% (701), New 2.1% (83). |
+| **Repeat buyers** | Of 3,476 customers with more than 5 previous purchases, 958 (28%) are subscribers, which is about the same as the overall subscription rate. |
+| **Age groups** | Young Adults (18–31) contribute the most at $62,143, then Middle-aged $59,197, Adult $55,978 and Senior $55,763. Differences are modest. |
+| **Top products per category** | Accessories: Jewelry, Belt, Sunglasses · Clothing: Blouse, Pants, Shirt · Footwear: Sandals, Shoes, Sneakers · Outerwear: Jacket, Coat |
 
-- Python 3.x
-- Jupyter Notebook or VS Code
-- MySQL Server and MySQL Workbench (if using MySQL)
-- Power BI Desktop (if using Power BI)
+> Figures were recomputed from the dataset using the same logic as the SQL queries and the cleaning steps in the notebook.
 
-### 1. Clone the Repository
+---
 
-```bash
-git clone https://github.com/varshu-2704/Customer_behaviour_analysis.git
-cd Customer_behaviour_analysis
+## 💡 Recommendations
+
+- **Rework the subscription offer.** Subscribers don't spend more per purchase, so add real benefits (early access, member pricing, free shipping) that justify subscribing and lift spend.
+- **Review the discount policy.** Nearly half of Hat, Sneaker and Coat purchases are discounted. Test whether those discounts drive sales or just give away margin.
+- **Grow the female customer base.** Spend per purchase is equal across genders, so more female customers would directly increase revenue.
+- **Feature top-rated products** (Gloves, Sandals, Boots) in campaigns and invest in Clothing and Accessories, the biggest revenue drivers.
+- **Revisit segment definitions.** With the current thresholds almost 80% of customers are "Loyal"; tighter cut-offs would give more useful segments.
+- **Use shipping as a small upsell lever**, since Express customers spend slightly more.
+
+---
+
+## 🗂️ Repository Structure
+
 ```
-
-### 2. Install Python Libraries
-
-```bash
-pip install pandas numpy matplotlib seaborn sqlalchemy pymysql jupyter
-```
-
-Install only the additional libraries required by your actual code.
-
-### 3. Run the Python Analysis
-
-Open the notebook in Jupyter Notebook or VS Code, update the dataset path if necessary, and execute the cells in order.
-
-### 4. Perform SQL Analysis
-
-Start MySQL, configure your database connection, and execute the SQL queries included in the repository.
-
-Do not upload database passwords or other credentials to GitHub.
-
-### 5. View the Dashboard
-
-Open the Power BI file in Power BI Desktop if a dashboard is included.
-
-## 📁 Project Structure
-
-The repository may be organized as follows. Update the filenames to match your actual files.
-
-```text
 Customer_behaviour_analysis/
-│
-├── data/
-│   └── customer_shopping_data.csv
-│
-├── notebooks/
-│   └── customer_behaviour_analysis.ipynb
-│
-├── sql/
-│   └── customer_analysis.sql
-│
-├── dashboard/
-│   └── customer_behaviour_dashboard.pbix
-│
-├── images/
-│   └── dashboard.png
-│
-├── README.md
-└── requirements.txt
+├── CUSTOMER_SHOPPING_ANALYSIS.IPYNB          # Python: cleaning, feature engineering, MySQL load
+├── Customer_behaviour_SQLqueries.sql         # 10 SQL business-analysis queries
+├── customer_shopping_behavior.csv            # Raw dataset (3,900 rows, 18 columns)
+├── customer_behavior_dashboard.pbix          # Power BI dashboard
+├── Customer_Shopping_Behavior_Analysis.pdf   # Written project report
+├── Customer-Shopping-Behavior-Analysis..pdf  # Presentation slides
+├── LICENSE                                   # GNU GPL v3.0
+└── README.md
 ```
 
-## 💡 Business Value
+---
 
-The analysis can help businesses understand customer preferences, identify purchasing trends, evaluate promotional activity, and make more informed decisions about customer engagement. Recommendations should be based on the patterns established by the completed analysis.
+## ▶️ How to Run
 
-## 🚀 Future Improvements
+**Prerequisites:** Python 3.8+, MySQL Server, Power BI Desktop, Jupyter.
 
-- Perform customer segmentation.
-- Explore customer retention and repeat purchasing patterns.
-- Develop additional interactive dashboard features.
-- Automate data cleaning and reporting.
-- Extend the analysis with more customer or transaction data, where available.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/varshu-2704/Customer_behaviour_analysis.git
+   cd Customer_behaviour_analysis
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install pandas sqlalchemy pymysql jupyter
+   ```
+
+3. **Create the database** in MySQL:
+   ```sql
+   CREATE DATABASE customer_behaviour;
+   ```
+
+4. **Run the notebook** `CUSTOMER_SHOPPING_ANALYSIS.IPYNB`. Before running, set your own MySQL username, password, host and port in the connection cell (preferably via environment variables, never hard-coded). The notebook cleans the data and writes it to a `customer` table.
+
+5. **Run the SQL queries** in `Customer_behaviour_SQLqueries.sql` using MySQL Workbench or the CLI.
+
+6. **Open the dashboard:** open `customer_behavior_dashboard.pbix` in Power BI Desktop (it may need its data source pointed to your local database or CSV).
+
+---
+
+## ⚠️ Limitations
+
+- Review-rating imputation uses category medians, which can smooth over differences between products.
+- The dataset is a single snapshot with no purchase dates, so trends over time can't be analyzed.
+- Age groups are quartile-based, not fixed marketing age brackets.
+
+---
+
+## 📜 License
+
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 👤 Author
 
-**Varshu-2704**
-
-GitHub: [@varshu-2704](https://github.com/varshu-2704)
-
-## 🙏 Acknowledgements
-
-Credit the dataset provider and any tutorials, repositories, or learning resources used during the development of this project.
-
-## 📄 License
-
-Add a license only after deciding the appropriate terms for your original work and confirming that the dataset and any third-party materials permit the intended use. If the project is based on an existing repository, acknowledge the original author and comply with its license.
+**varshu-2704** · [GitHub](https://github.com/varshu-2704)
