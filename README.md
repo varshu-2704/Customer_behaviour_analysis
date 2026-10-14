@@ -36,8 +36,6 @@ Retail teams need to know *who* their customers are and *what* influences their 
 
 The goal is to turn transaction data into insights that can guide marketing, pricing and loyalty strategy.
 
-[Back to top](#top)
-
 ---
 
 ## Dataset
@@ -55,7 +53,6 @@ The goal is to turn transaction data into insights that can guide marketing, pri
 
 **Categories:** Clothing, Accessories, Footwear, Outerwear.
 
-[Back to top](#top)
 
 ---
 
@@ -69,7 +66,6 @@ The goal is to turn transaction data into insights that can guide marketing, pri
 | [MySQL](https://www.mysql.com/) | Business analysis using aggregations, subqueries, CTEs and window functions |
 | [Power BI](https://powerbi.microsoft.com/) | Interactive dashboard (`.pbix`) |
 
-[Back to top](#top)
 
 ---
 
@@ -95,7 +91,6 @@ Code: [`CUSTOMER_SHOPPING_ANALYSIS.IPYNB`](CUSTOMER_SHOPPING_ANALYSIS.IPYNB)
 ### 4. Visualization
 - Built an interactive dashboard in Power BI: [`customer_behavior_dashboard.pbix`](customer_behavior_dashboard.pbix)
 
-[Back to top](#top)
 
 ---
 
@@ -114,7 +109,7 @@ All queries are in [`Customer_behaviour_SQLqueries.sql`](Customer_behaviour_SQLq
 9. Are repeat buyers (more than 5 previous purchases) also likely to subscribe?
 10. What is the revenue contribution of each age group?
 
-[Back to top](#top)
+
 
 ---
 
@@ -150,7 +145,6 @@ Overall: **$233,081** total revenue, **$59.76** average purchase, **3.75** avera
 - **Revisit segment definitions.** With the current thresholds almost 80% of customers are "Loyal"; tighter cut-offs would give more useful segments.
 - **Use shipping as a small upsell lever**, since Express customers spend slightly more.
 
-[Back to top](#top)
 
 ---
 
@@ -178,7 +172,7 @@ Customer_behaviour_analysis/
 | [`Customer-Shopping-Behavior-Analysis..pdf`](Customer-Shopping-Behavior-Analysis..pdf) | Presentation slides |
 | [`LICENSE`](LICENSE) | GNU GPL v3.0 |
 
-[Back to top](#top)
+
 
 ---
 
@@ -208,7 +202,7 @@ Customer_behaviour_analysis/
 
 6. **Open the dashboard:** open [`customer_behavior_dashboard.pbix`](customer_behavior_dashboard.pbix) in Power BI Desktop (it may need its data source pointed to your local database or the [CSV](customer_shopping_behavior.csv)).
 
-[Back to top](#top)
+
 
 ---
 
@@ -218,7 +212,7 @@ Customer_behaviour_analysis/
 - The dataset is a single snapshot with no purchase dates, so trends over time can't be analyzed.
 - Age groups are quartile-based, not fixed marketing age brackets.
 
-[Back to top](#top)
+
 
 ---
 
@@ -226,7 +220,7 @@ Customer_behaviour_analysis/
 
 This project is licensed under the **[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)**. See the [LICENSE](LICENSE) file for details.
 
-[Back to top](#top)
+
 
 ---
 
