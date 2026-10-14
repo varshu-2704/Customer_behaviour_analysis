@@ -60,11 +60,11 @@ The goal is to turn transaction data into insights that can guide marketing, pri
 
 | Tool | Purpose |
 |---|---|
-| [Python](https://www.python.org/) · [pandas](https://pandas.pydata.org/) | Data cleaning and feature engineering |
-| [SQLAlchemy](https://www.sqlalchemy.org/) · [PyMySQL](https://pymysql.readthedocs.io/) | Loading the cleaned data into MySQL |
-| [Jupyter Notebook](https://jupyter.org/) | Exploratory analysis and data preparation |
-| [MySQL](https://www.mysql.com/) | Business analysis using aggregations, subqueries, CTEs and window functions |
-| [Power BI](https://powerbi.microsoft.com/) | Interactive dashboard (`.pbix`) |
+| [Python] · [pandas] | Data cleaning and feature engineering |
+| [SQLAlchemy] · [PyMySQL] | Loading the cleaned data into MySQL |
+| [Jupyter Notebook] | Exploratory analysis and data preparation |
+| [MySQL] | Business analysis using aggregations, subqueries, CTEs and window functions |
+| [Power BI] | Interactive dashboard (`.pbix`) |
 
 
 ---
@@ -132,7 +132,7 @@ Overall: **$233,081** total revenue, **$59.76** average purchase, **3.75** avera
 
 > Figures were recomputed from the dataset using the same logic as the SQL queries and the cleaning steps in the notebook.
 
-[Back to top](#top)
+
 
 ---
 
@@ -171,36 +171,6 @@ Customer_behaviour_analysis/
 | [`Customer_Shopping_Behavior_Analysis.pdf`](Customer_Shopping_Behavior_Analysis.pdf) | Written project report |
 | [`Customer-Shopping-Behavior-Analysis..pdf`](Customer-Shopping-Behavior-Analysis..pdf) | Presentation slides |
 | [`LICENSE`](LICENSE) | GNU GPL v3.0 |
-
-
-
----
-
-## How to Run
-
-**Prerequisites:** [Python 3.8+](https://www.python.org/downloads/), [MySQL Server](https://dev.mysql.com/downloads/mysql/), [Power BI Desktop](https://powerbi.microsoft.com/desktop/), [Jupyter](https://jupyter.org/install).
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/varshu-2704/Customer_behaviour_analysis.git
-   cd Customer_behaviour_analysis
-   ```
-
-2. **Install dependencies**
-   ```bash
-   pip install pandas sqlalchemy pymysql jupyter
-   ```
-
-3. **Create the database** in MySQL:
-   ```sql
-   CREATE DATABASE customer_behaviour;
-   ```
-
-4. **Run the notebook** [`CUSTOMER_SHOPPING_ANALYSIS.IPYNB`](CUSTOMER_SHOPPING_ANALYSIS.IPYNB). Before running, set your own MySQL username, password, host and port in the connection cell (preferably via environment variables, never hard-coded). The notebook cleans the data and writes it to a `customer` table.
-
-5. **Run the SQL queries** in [`Customer_behaviour_SQLqueries.sql`](Customer_behaviour_SQLqueries.sql) using MySQL Workbench or the command line.
-
-6. **Open the dashboard:** open [`customer_behavior_dashboard.pbix`](customer_behavior_dashboard.pbix) in Power BI Desktop (it may need its data source pointed to your local database or the [CSV](customer_shopping_behavior.csv)).
 
 
 
