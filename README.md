@@ -2,7 +2,7 @@
 
 # Customer Shopping Behavior Analysis
 
-An end-to-end data analytics project that explores how customers shop: what they buy, how much they spend, how they respond to discounts and subscriptions, and which segments drive revenue. The workflow runs from raw CSV to cleaned data in **[Python](https://www.python.org/)**, business analysis in **[MySQL](https://www.mysql.com/)**, and an interactive **[Power BI](https://powerbi.microsoft.com/)** dashboard.
+An end-to-end data analytics project that explores how customers shop: what they buy, how much they spend, how they respond to discounts and subscriptions, and which segments drive revenue. The workflow runs from raw CSV to cleaned data in **[Python]**, business analysis in **[MySQL]**, and an interactive **[Power BI]** dashboard.
 
 **Quick links:** [Notebook](CUSTOMER_SHOPPING_ANALYSIS.IPYNB) · [SQL queries](Customer_behaviour_SQLqueries.sql) · [Dataset](customer_shopping_behavior.csv) · [Dashboard](customer_behavior_dashboard.pbix) · [Report (PDF)](Customer_Shopping_Behavior_Analysis.pdf) · [Slides (PDF)](Customer-Shopping-Behavior-Analysis..pdf)
 
