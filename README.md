@@ -18,7 +18,6 @@ An end-to-end data analytics project that explores how customers shop: what they
 - [Key Insights](#key-insights)
 - [Recommendations](#recommendations)
 - [Repository Structure](#repository-structure)
-- [How to Run](#how-to-run)
 - [Limitations](#limitations)
 - [License](#license)
 - [Author](#author)
@@ -165,7 +164,7 @@ Customer_behaviour_analysis/
 | File | Description |
 |---|---|
 | [`CUSTOMER_SHOPPING_ANALYSIS.IPYNB`](CUSTOMER_SHOPPING_ANALYSIS.IPYNB) | Python: cleaning, feature engineering, MySQL load |
-| [`Customer_behaviour_SQLqueries.sql`](Customer_behaviour_SQLqueries.sql) | 10 SQL business-analysis queries |
+| [`Customer_behaviour_SQLqueries.sql`](Customer_behaviour_SQLqueries.sql) | SQL business-analysis queries |
 | [`customer_shopping_behavior.csv`](customer_shopping_behavior.csv) | Raw dataset (3,900 rows, 18 columns) |
 | [`customer_behavior_dashboard.pbix`](customer_behavior_dashboard.pbix) | Power BI dashboard |
 | [`Customer_Shopping_Behavior_Analysis.pdf`](Customer_Shopping_Behavior_Analysis.pdf) | Written project report |
